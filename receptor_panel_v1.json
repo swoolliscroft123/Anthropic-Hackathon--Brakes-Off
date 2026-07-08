@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "panel_name": "receptor_space_panel",
+    "version": "1.0",
+    "n_genes": 33,
+    "purpose": "Shared feature set restricting BOTH the Perturb-seq shift (\u0394_KO) and the atlas blood\u2192tumor shift (\u0394_tumor) to receptor space; comparison computed on CLR-transformed compositions.",
+    "direction_semantics": "expected_blood_to_tumor is a literature PRIOR for interpretation/decomposition only; the actual \u0394_tumor is MEASURED from the atlas, never assumed.",
+    "categories": {
+      "chemokine_receptor": 16,
+      "adhesion": 8,
+      "lipid_receptor": 5,
+      "atypical_receptor": 4
+    },
+    "cell_scope": "human CD4+ conventional T cells (matches Perturb-seq); Treg/CD8 kept as specificity controls only.",
+    "notes": "Gene symbols are HGNC. Aliases: GPR183=EBI2, ACKR3=CXCR7, ACKR1=DARC, SELL=CD62L, SELPLG=PSGL-1, ITGAE=CD103, CX3CR1 ligand=CX3CL1."
+  },
+  "genes": {
+    "CXCR3": [
+      "chemokine_receptor",
+      "up",
+      "Th1/effector homing; CXCL9/10/11 axis, hallmark of T-cell tumor infiltration"
+    ],
+    "CXCR6": [
+      "chemokine_receptor",
+      "up",
+      "tissue-resident/TRM homing; CXCL16 in tumors"
+    ],
+    "CCR5": [
+      "chemokine_receptor",
+      "up",
+      "effector Th1 homing; CCL3/4/5 in TME"
+    ],
+    "CXCR4": [
+      "chemokine_receptor",
+      "up",
+      "CXCL12/SDF-1 retention in tumor stroma"
+    ],
+    "CCR8": [
+      "chemokine_receptor",
+      "up",
+      "tumor-Treg enriched; CCL1; emerging depletion target"
+    ],
+    "CCR2": [
+      "chemokine_receptor",
+      "up",
+      "inflammatory recruitment; CCL2 in TME"
+    ],
+    "CCR6": [
+      "chemokine_receptor",
+      "up",
+      "Th17/mucosal; CCL20 in some tumors"
+    ],
+    "CX3CR1": [
+      "chemokine_receptor",
+      "up",
+      "terminal effector / cytotoxic differentiation"
+    ],
+    "CCR7": [
+      "chemokine_receptor",
+      "down",
+      "lymph-node homing; naive/central-memory, lost on tissue entry"
+    ],
+    "CXCR5": [
+      "chemokine_receptor",
+      "down",
+      "B-follicle homing (Tfh); GPR183 counter-axis \u2014 your EBI2 wheelhouse"
+    ],
+    "CCR4": [
+      "chemokine_receptor",
+      "context",
+      "Th2/Treg skin homing; CCL17/22"
+    ],
+    "CCR10": [
+      "chemokine_receptor",
+      "context",
+      "skin/mucosa; CCL27/28"
+    ],
+    "CCR9": [
+      "chemokine_receptor",
+      "context",
+      "gut homing; CCL25"
+    ],
+    "CCR1": [
+      "chemokine_receptor",
+      "context",
+      "inflammatory, promiscuous"
+    ],
+    "CCR3": [
+      "chemokine_receptor",
+      "context",
+      "Th2/eosinophil axis"
+    ],
+    "XCR1": [
+      "chemokine_receptor",
+      "context",
+      "rare on T; cDC1 crosstalk"
+    ],
+    "ACKR1": [
+      "atypical_receptor",
+      "context",
+      "DARC; erythroid/endothelial chemokine buffering"
+    ],
+    "ACKR2": [
+      "atypical_receptor",
+      "context",
+      "D6 scavenger of inflammatory CC chemokines"
+    ],
+    "ACKR3": [
+      "atypical_receptor",
+      "context",
+      "CXCR7; CXCL12 scavenger, tunes CXCR4 axis"
+    ],
+    "ACKR4": [
+      "atypical_receptor",
+      "context",
+      "CCX-CKR; scavenges CCL19/21/25"
+    ],
+    "GPR183": [
+      "lipid_receptor",
+      "down",
+      "EBI2; 7\u03b1,25-OHC positioning; core to your niche biology"
+    ],
+    "GPR15": [
+      "lipid_receptor",
+      "context",
+      "gut/colon T homing; GPR15L"
+    ],
+    "S1PR1": [
+      "lipid_receptor",
+      "down",
+      "S1P egress from lymphoid tissue; lost on tissue residency (TRM)"
+    ],
+    "S1PR4": [
+      "lipid_receptor",
+      "context",
+      "lymphocyte S1P sensing"
+    ],
+    "S1PR5": [
+      "lipid_receptor",
+      "context",
+      "terminal effector / NK-like egress"
+    ],
+    "SELL": [
+      "adhesion",
+      "down",
+      "CD62L; HEV entry, naive/Tcm; lost on effector differentiation"
+    ],
+    "SELPLG": [
+      "adhesion",
+      "up",
+      "PSGL-1; E/P-selectin ligand, inflamed-endothelium rolling"
+    ],
+    "ITGA4": [
+      "adhesion",
+      "context",
+      "VLA-4 \u03b1; VCAM-1 adhesion"
+    ],
+    "ITGAE": [
+      "adhesion",
+      "up",
+      "CD103; E-cadherin, epithelial tissue residency (TRM)"
+    ],
+    "ITGAL": [
+      "adhesion",
+      "context",
+      "LFA-1 \u03b1; ICAM adhesion, firm arrest"
+    ],
+    "ITGB1": [
+      "adhesion",
+      "context",
+      "\u03b21 integrin; broad ECM/VCAM"
+    ],
+    "ITGB2": [
+      "adhesion",
+      "context",
+      "\u03b22 integrin; LFA-1/Mac-1 partner"
+    ],
+    "ITGB7": [
+      "adhesion",
+      "context",
+      "gut homing (\u03b14\u03b27 / \u03b1E\u03b27)"
+    ]
+  }
+}
