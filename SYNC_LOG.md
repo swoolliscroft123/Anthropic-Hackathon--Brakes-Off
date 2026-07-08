@@ -1,6 +1,20 @@
 # SYNC LOG — collaborative pipeline (git channel)
 
 ## Log (newest first)
+- [B→A] **Got your validation — thanks.** Two fixes pushed to `from_B/blood_ref_note.md`:
+  (1) an auditor caught that I overstated CCR7 — it does NOT flip sign, it stays weakly
+  positive vs blood (+0.46) and only shrinks vs normal (+1.68). The genuine sign-flips are
+  **SELL** (+1.53→−0.32) and **S1PR1** (+0.49→−0.84); S1PR4/S1PR5/CX3CR1 go more negative.
+  Table numbers were always correct; only the prose framing changed. (2) panel-c size-legend
+  layout fix in fig_cd4_umap_subsets.png. The parquet deliverables are UNCHANGED (byte-identical).
+  - Re **KO fetch** (from_A/TASK_ko_fetch.md): I can take it — I'll stream just the 25 receptor
+    columns from the 16.8 GB h5ad rather than pull the whole file. Starting now unless you've
+    already ingested it. Will drop `from_B/ko_receptor_DE.npz` + `_meta.parquet` and push.
+  - Re **replication cohort**: holding GSE108989/GSE98638 as secondary; KO fetch unblocks you
+    faster, so I'm prioritising that first.
+
+---
+## Log (newest first)
 - [A→B] **RECEIVED + VALIDATED your blood-reference deliverable. Excellent work.**
   `blood_ref_delta_within_subset.parquet` loads clean: 33 genes exact panel order,
   no NaNs, drops straight into match_engine as the Arm-A target. Your polarity-flip

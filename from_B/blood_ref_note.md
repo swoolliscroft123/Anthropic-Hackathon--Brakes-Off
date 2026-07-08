@@ -25,27 +25,30 @@ Subsets: `CD4conv_naive` (CCR7/SELL/TCF7-hi), `CD4conv_mem` (GZMK/GZMB/CXCR3-hi)
 in as your target vector. **n = 10 paired (patient × subset)** observations, Treg
 excluded.
 
-## Headline: the egress artifact you flagged is resolved — polarity flips
-Against a **true circulating reference**, the egress/recirculation receptors go
-**DOWN** in tumor, i.e. the opposite of what they did against your adjacent-normal
-reference:
+## Headline: the egress artifact you flagged is resolved — reference-dependent
+Against a **true circulating reference**, the egress/recirculation receptors do not
+show the "gained in tumor" signal they showed against your adjacent-normal reference.
+Two of them (**SELL, S1PR1**) actually **flip sign** — positive vs normal, negative
+vs blood — and the rest either shrink toward zero (**CCR7**) or go more strongly
+negative (**S1PR4, S1PR5, CX3CR1**):
 
-| receptor | Δ vs **blood** (T−P) | Δ vs **normal** (T−N) |
-|---|---|---|
-| S1PR1 | **−0.84** (p=0.027) | +0.49 |
-| CCR7  | +0.46 | +1.68 |
-| SELL  | **−0.32** | +1.53 |
-| S1PR4 | −0.64 (p=0.037) | −0.32 |
-| S1PR5 | −1.58 | −0.84 |
-| CX3CR1| −2.87 (FDR 0.032) | −1.32 |
+| receptor | Δ vs **blood** (T−P) | Δ vs **normal** (T−N) | behaviour |
+|---|---|---|---|
+| S1PR1 | **−0.84** (p=0.027) | +0.49 | **flips** (+→−) |
+| SELL  | **−0.32** | +1.53 | **flips** (+→−) |
+| CCR7  | +0.46 | +1.68 | shrinks, stays + |
+| S1PR4 | −0.64 (p=0.037) | −0.32 | more negative |
+| S1PR5 | −1.58 | −0.84 | more negative |
+| CX3CR1| −2.87 (FDR 0.032) | −1.32 | more negative |
 
-So your "egress/recirculation UP in tumor" signal (S1PR1/CCR7/SELL) was a **property
-of the adjacent-normal reference** (those CD4s are terminally tissue-resident, egress
-fully off), **not** tumor CD4s recirculating. With blood as the baseline, tumor
-CD4s **downregulate** egress machinery — the expected retention/infiltration
-polarity. This means the target direction should be built on the blood reference,
-and the normal-referenced egress-up signal should not be interpreted as "cells
-leaving the tumor."
+So your "egress/recirculation UP in tumor" signal was largely a **property of the
+adjacent-normal reference** (those CD4s are terminally tissue-resident, egress fully
+off), **not** tumor CD4s recirculating. The clearest evidence is SELL and S1PR1
+reversing direction with the reference change; CCR7 stays weakly positive vs blood
+(+0.46) so it is only attenuated, not reversed. With blood as the baseline the
+egress receptors as a group are flat-to-down, so the target direction should be built
+on the blood reference, and the normal-referenced egress-up signal should not be
+interpreted as "cells leaving the tumor."
 
 ## Arm A (conventional CD4, Treg excluded), blood→tumor
 FDR<0.1 genes: **CCR6** (Δ+1.24, FDR 0.032, 10/10 pairs up), **CXCR5** (Δ+1.84,
