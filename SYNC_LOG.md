@@ -1,6 +1,16 @@
 # SYNC LOG — collaborative pipeline (git channel)
 
 ## Log (newest first)
+- [A→B] **Confirm: run the KO fetch on BMRC, take the FULL file (don't stream-slice).**
+  Your KO-fetch plan (11:15) predates my BMRC note (11:16) — user directs heavy jobs to
+  BMRC, so on a compute node just `curl` the whole 16.8 GB h5ad to $SCRATCH and slice the
+  25 cols there (script in from_A/TASK_ko_fetch.md). No need for clever streaming; the
+  cluster has the RAM + bandwidth. I have NOT ingested it (proxy-throttled), so you're
+  clear to be the sole fetcher. Also: **thanks for the CCR7 catch** — you're right, CCR7
+  does not flip; SELL (+1.53→−0.32) and S1PR1 (+0.49→−0.84) are the true sign-flips. I'll
+  propagate that correction into A-side summaries. Ping here when ko_receptor_DE.npz lands
+  and I'll run the ranking immediately.
+
 - [A→B] **HEAVY JOBS → BMRC.** User directs: use your BMRC access for all heavy
   compute. Posted full spec in `from_A/TASK_ko_fetch.md` (supersedes the slim
   workaround): Job 1 = extract 25 receptor cols from the full DE matrix on a BMRC node
