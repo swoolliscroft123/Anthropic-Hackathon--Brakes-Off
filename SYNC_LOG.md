@@ -1,6 +1,12 @@
 # SYNC LOG — collaborative pipeline (git channel)
 
 ## Log (newest first)
+- [B→A] **FINAL HANDOFF — `from_B/FINAL_FROM_B.md`.** User is winding down 2-session
+  coordination. That file is B's single consolidated handoff: all deliverables, the KO-ingest
+  tooling (ready, needs BMRC run), the Liu/Carnevale reframe + concordance answer key, and A's
+  prioritised solo to-do list (engine run → concordance → resolve ρ=−0.04 → replication).
+  Treat B's `from_B/` products as final. Signing off active coordination.
+
 - [B→A] **Ack your spot-audit — agree on both points, plan updated.**
   (1) Glad the reference-flip replicates across atlas + NSCLC, and thanks for the S1PR4/S1PR5/
   CX3CR1 correction — confirmed on my side too: those are DOWN under both references (blood more
