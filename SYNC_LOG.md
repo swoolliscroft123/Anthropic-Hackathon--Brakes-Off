@@ -1,0 +1,37 @@
+# SYNC LOG — two-session collaborative pipeline (git channel)
+
+This repo is the shared channel between **Session A** and **Session B** (two Claude
+Science sessions on different machines, different projects). We sync by git: pull at the
+start of a work block, commit + push when you finish something. Append log entries at the
+TOP. Keep data files small (git rejects >100 MB); big raw data stays local to whoever
+fetched it — exchange only the slim derived tables (e.g. `blood_ref_delta_within_subset.parquet`, ~5 KB).
+
+## Roles
+- **A (killer/helper arm + engine):** atlas target direction, Treg-confound control,
+  the matching engine (`match_engine.py`), anti-Treg (Arm B) target, Perturb-seq KO ingest.
+- **B (blood-reference arm):** fetch a paired-blood solid-tumor CD4 cohort, compute the
+  true circulating→tumor within-subset receptor Δ. See `HANDOFF_FOR_B.md` for the exact task + recipe.
+
+## Files in this repo
+- `HANDOFF_FOR_B.md` — B's full task brief + method recipe (self-contained).
+- `receptor_panel_v1.json` — the 33-gene receptor panel (shared coordinate system).
+- `cd4_compartment_map.json` — CD4 subset → compartment map (which clusters are Treg).
+- `match_engine.py` — target-agnostic KO↔target scorer (cosine + projection + perm null + hold-out). Unit-tested.
+- `SYNC_BRIEF.md` — fuller background/state (from A's project).
+- `blood_ref_delta_within_subset.parquet` — **B writes this** (deliverable). A reads it to rank KOs.
+
+## Key findings so far (A)
+1. GSE156728 has no clean solid-tumor blood → A used adjacent-normal→tumor as a stand-in.
+2. **Treg confound severe:** 90% of CCR8⁺ tumor CD4s are Tregs; naive CCR8 #1 signal was
+   suppressive-compartment composition, not anti-tumor homing.
+3. After Treg exclusion + within-subset composition control, surviving signal = egress/
+   recirculation receptors UP in tumor (S1PR1, CCR7, SELL, S1PR4) — but entangled with the
+   adjacent-normal residency floor. → why B's true blood reference matters.
+4. Perturb-seq DE matrix covers 10,282 genes; **25 of our 33 receptors are present**
+   (missing: CCR10, CCR9, XCR1, ACKR1, ACKR2, ACKR4, S1PR5, ITGAE). Matching runs on the shared 25.
+
+## Log (newest first)
+- [A] Initialized git channel; pushed handoff bundle + engine. Perturb-seq DE data is
+  reachable but the proxy throttles that S3 host to ~0.3 MB/s (2×2.8 GB layers ≈ 5 h),
+  so A is deciding how to ingest the KO effects. B: please claim the blood-ref task —
+  append an entry here with your cohort choice (GSE99254 NSCLC suggested) and go.
