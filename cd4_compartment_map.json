@@ -1,0 +1,44 @@
+{
+  "subset_to_compartment": {
+    "CD4.c18.Treg.RTKN2": "Treg",
+    "CD4.c19.Treg.S1PR1": "Treg",
+    "CD4.c20.Treg.TNFRSF9": "Treg",
+    "CD4.c21.Treg.OAS1": "Treg",
+    "CD4.c12.Tem.GZMK": "effector",
+    "CD4.c13.Temra.CX3CR1": "effector",
+    "CD4.c11.Tm.GZMA": "effector",
+    "CD4.c09.Tm.CCL5": "effector",
+    "CD4.c17.TfhTh1.CXCL13": "helper_Tfh",
+    "CD4.c16.Tfh.CXCR5": "helper_Tfh",
+    "CD4.c15.Th17.IL23R": "helper_Th17",
+    "CD4.c14.Th17.SLC4A10": "helper_Th17",
+    "CD4.c01.Tn.TCF7": "naive",
+    "CD4.c02.Tn.PASK": "naive",
+    "CD4.c03.Tn.ADSL": "naive",
+    "CD4.c04.Tn.il7r": "naive",
+    "CD4.c05.Tm.TNF": "memory",
+    "CD4.c06.Tm.ANXA1": "memory",
+    "CD4.c07.Tm.ANXA2": "memory",
+    "CD4.c08.Tm.CREM": "memory",
+    "CD4.c10.Tm.CAPG": "memory",
+    "CD4.c22.ISG.IFIT1": "ISG",
+    "CD4.c23.Mix.NME1": "other",
+    "CD4.c24.Mix.NME2": "other"
+  },
+  "compartment_to_class": {
+    "Treg": "suppressive",
+    "effector": "antitumor",
+    "helper_Tfh": "antitumor",
+    "helper_Th17": "antitumor",
+    "naive": "conventional",
+    "memory": "conventional",
+    "ISG": "conventional",
+    "other": "other"
+  },
+  "arm_A_keep_classes": [
+    "antitumor",
+    "conventional"
+  ],
+  "arm_A_exclude": "suppressive (Treg) + other/Mix",
+  "arm_B_focus_class": "suppressive"
+}
