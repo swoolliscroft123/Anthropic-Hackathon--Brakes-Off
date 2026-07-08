@@ -5,8 +5,9 @@ Perturb-seq DE matrix (GWCD4i.DE_stats.h5ad) on BMRC, where the S3 bucket is
 reachable at full speed. Produces the slim files Session A needs.
 
 Outputs (written next to this script's --outdir):
-  ko_receptor_DE.npz        : lfc (33983x25 f32), z (33983x25 f32), genes (25,)
-  ko_receptor_DE_meta.parquet: obs metadata (target, condition, n_cells, ontarget_sig, ontarget_es)
+  ko_receptor_DE.npz        : lfc, z, padj (each 33983x25 f32), genes (25,)
+  ko_receptor_DE_meta.parquet: obs metadata (target, condition, n_cells,
+                               ontarget_sig, ontarget_es, offtarget)
 
 Run on a BMRC compute node (see submit_bmrc.sh). Needs: numpy, pandas, h5py, pyarrow.
 """
@@ -70,6 +71,8 @@ def main():
     lfc = h['layers']['log_fc'][:, sorted_cols][:, back].astype(np.float32)
     print(f"[{time.strftime('%H:%M:%S')}] slicing zscore ...", flush=True)
     z = h['layers']['zscore'][:, sorted_cols][:, back].astype(np.float32)
+    print(f"[{time.strftime('%H:%M:%S')}] slicing adj_p_value ...", flush=True)
+    padj = h['layers']['adj_p_value'][:, sorted_cols][:, back].astype(np.float32)
 
     meta = pd.DataFrame({
         'target': read_obs(h, 'target_contrast_gene_name').astype(str),
@@ -77,14 +80,15 @@ def main():
         'n_cells': np.asarray(read_obs(h, 'n_cells_target'), float),
         'ontarget_sig': read_obs(h, 'ontarget_significant').astype(str),
         'ontarget_es': np.asarray(read_obs(h, 'ontarget_effect_size'), float),
+        'offtarget': read_obs(h, 'distal_offtarget_flag').astype(str),
     })
 
     npz = os.path.join(args.outdir, "ko_receptor_DE.npz")
     pq = os.path.join(args.outdir, "ko_receptor_DE_meta.parquet")
-    np.savez_compressed(npz, lfc=lfc, z=z, genes=np.array(present))
+    np.savez_compressed(npz, lfc=lfc, z=z, padj=padj, genes=np.array(present))
     meta.to_parquet(pq)
     print(f"[{time.strftime('%H:%M:%S')}] wrote {npz} ({os.path.getsize(npz)/1e6:.1f} MB) and {pq}", flush=True)
-    print(f"  lfc {lfc.shape}  z {z.shape}  meta {meta.shape}", flush=True)
+    print(f"  lfc {lfc.shape}  z {z.shape}  padj {padj.shape}  meta {meta.shape}", flush=True)
 
     if h5path == os.path.join(args.outdir, "GWCD4i.DE_stats.h5ad") and not args.keep_h5:
         os.remove(h5path)
